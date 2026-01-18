@@ -1,0 +1,27 @@
+<tr id="contact-{{ contact.id }}">
+  <td colspan="4">
+    <form hx-post="/edit/{{ contact.id }}/"
+          hx-target="#contact-{{ contact.id }}"
+          hx-swap="outerHTML"
+          method="post"
+          class="row g-2">
+      {% csrf_token %}
+
+      <div class="col-md-3">
+        <input class="form-control" name="name" value="{{ contact.name }}">
+      </div>
+
+      <div class="col-md-3">
+        <input class="form-control" name="email" value="{{ contact.email }}">
+      </div>
+
+      <div class="col-md-3">
+        <input class="form-control" name="phone" value="{{ contact.phone }}">
+      </div>
+
+      <div class="col-md-3">
+        <button class="btn btn-success w-100">Save</button>
+      </div>
+    </form>
+  </td>
+</tr>

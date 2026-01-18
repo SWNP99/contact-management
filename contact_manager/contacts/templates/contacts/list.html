@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Contacts</h2>
+<form hx-post="/add/"
+      hx-target="#contact-table-body"
+      hx-swap="afterbegin"
+      method="post"
+      class="row g-2 mb-4">
+  {% csrf_token %}
+
+  <div class="col-md-3">
+    <input class="form-control" name="name" placeholder="Name" required>
+  </div>
+
+  <div class="col-md-3">
+    <input class="form-control" name="email" placeholder="Email" required>
+  </div>
+
+  <div class="col-md-3">
+    <input class="form-control" name="phone" placeholder="Phone" required>
+  </div>
+
+  <div class="col-md-3">
+    <button class="btn btn-primary w-100">Add Contact</button>
+  </div>
+</form>
+
+
+<!-- Search Form -->
+<input type="text"
+       name="q"
+       class="form-control mb-3"
+       placeholder="Search contacts..."
+       hx-get="/search/"
+       hx-trigger="keyup changed delay:300ms"
+       hx-target="#contact-table-body">
+
+
+<!-- Contact Table -->
+<table class="table table-bordered table-hover">
+  <thead class="table-dark">
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody id="contact-table-body">
+    {% include "contacts/partials/contact_rows.html" %}
+  </tbody>
+</table>
+
+{% endblock %}

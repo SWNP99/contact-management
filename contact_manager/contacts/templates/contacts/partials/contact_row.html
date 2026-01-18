@@ -1,0 +1,28 @@
+<tr id="contact-{{ contact.id }}">
+  <td>{{ contact.name }}</td>
+  <td>{{ contact.email }}</td>
+  <td>{{ contact.phone }}</td>
+  <td>
+    <!-- EDIT -->
+    <button class="btn btn-sm btn-warning"
+            hx-get="{% url 'contact_edit' contact.id %}"
+            hx-target="#contact-{{ contact.id }}"
+            hx-swap="outerHTML">
+      Edit
+    </button>
+
+    <!-- DELETE -->
+    <form method="post"
+      action="{% url 'contact_delete' contact.id %}"
+      hx-post="{% url 'contact_delete' contact.id %}"
+      hx-confirm="Are you sure?"
+      hx-target="#contact-{{ contact.id }}"
+      hx-swap="outerHTML"
+      style="display:inline;">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+</form>
+
+
+  </td>
+</tr>

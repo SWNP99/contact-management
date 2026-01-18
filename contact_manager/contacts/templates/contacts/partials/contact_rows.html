@@ -1,0 +1,9 @@
+{% for contact in contacts %}
+    {% include "contacts/partials/contact_row.html" %}
+{% empty %}
+<tr>
+  <td colspan="4" class="text-center text-muted">
+    No contacts found
+  </td>
+</tr>
+{% endfor %}
